@@ -1,15 +1,15 @@
 <?php
 
-namespace LaravelQuiz;
+namespace Saritasa\LaravelQuiz;
 
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\ServiceProvider;
-use LaravelQuiz\Contracts\IQuestionsFlowService;
-use LaravelQuiz\Contracts\IQuizScoreService;
-use LaravelQuiz\Contracts\IQuizWorkflowService;
-use LaravelQuiz\Services\QuestionFlowService;
-use LaravelQuiz\Services\QuizScoreService;
-use LaravelQuiz\Services\QuizWorkflowService;
+use Saritasa\LaravelQuiz\Contracts\IQuestionsFlowService;
+use Saritasa\LaravelQuiz\Contracts\IQuizScoreService;
+use Saritasa\LaravelQuiz\Contracts\IQuizWorkflowService;
+use Saritasa\LaravelQuiz\Services\QuestionFlowService;
+use Saritasa\LaravelQuiz\Services\QuizScoreService;
+use Saritasa\LaravelQuiz\Services\QuizWorkflowService;
 
 class LaravelQuizServiceProvider extends ServiceProvider
 {
@@ -36,12 +36,12 @@ class LaravelQuizServiceProvider extends ServiceProvider
     {
         $this->publishes(
             [
-                __DIR__ . '/../config/health_check.php' =>
-                    $this->app->make('path.config') . DIRECTORY_SEPARATOR . 'health_check.php',
+                __DIR__ . '/../config/quiz.php' =>
+                    $this->app->make('path.config') . DIRECTORY_SEPARATOR . 'quiz.php',
             ],
-            'health_check'
+            'quiz'
         );
-        $this->mergeConfigFrom(__DIR__ . '/../config/health_check.php', 'health_check');
+        $this->mergeConfigFrom(__DIR__ . '/../config/quiz.php', 'quiz');
         $this->loadRoutesFrom(__DIR__. '/../routes/api.php');
     }
 }

@@ -1,22 +1,16 @@
 <?php
 
-namespace LaravelQuiz\Models\Questions;
+namespace Saritasa\LaravelQuiz\Models\Questions;
 
-use App\Models\Enums\QuestionTypes;
-use LaravelQuiz\Contracts\CanAnswerQuestions;
+use Saritasa\LaravelQuiz\Enums\QuestionTypes;
 
 /**
  * Question for training quiz in scope of module.
  */
 class SimpleQuestion extends Question
 {
-    public function newQuery()
+    public function newQuery($excludeDeleted = true)
     {
-        return parent::newQuery()->where(static::TYPE, '=', QuestionTypes::SIMPLE);
-    }
-
-    public function isCouldBeAnswered(CanAnswerQuestions $user): bool
-    {
-        return true;
+        return parent::newQuery($excludeDeleted)->where(static::TYPE, '=', QuestionTypes::SIMPLE);
     }
 }

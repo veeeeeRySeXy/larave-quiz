@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelQuiz\Contracts;
+namespace Saritasa\LaravelQuiz\Contracts;
 
 use Illuminate\Support\Collection;
-use LaravelQuiz\Exceptions\LaravelQuizException;
+use Saritasa\LaravelQuiz\Exceptions\LaravelQuizException;
 
 interface IQuestionsFlowService
 {

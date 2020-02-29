@@ -1,8 +1,8 @@
 <?php
 
-namespace LaravelQuiz\Models;
+namespace Saritasa\LaravelQuiz\Models;
 
-use LaravelQuiz\Contracts\HasScore;
+use Saritasa\LaravelQuiz\Contracts\HasScore;
 
 /**
  * User quiz information which could also be scored.

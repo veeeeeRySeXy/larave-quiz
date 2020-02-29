@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelQuiz\Exceptions;
+namespace Saritasa\LaravelQuiz\Exceptions;
 
 use Exception;
 

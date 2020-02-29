@@ -1,18 +1,21 @@
 <?php
 
-namespace LaravelQuiz\Models\Helpers;
+namespace Saritasa\LaravelQuiz\Models\Helpers;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use LaravelQuiz\Contracts\IQuestion;
-use LaravelQuiz\Contracts\IQuiz;
-use LaravelQuiz\Contracts\IUserQuiz;
-use LaravelQuiz\Models\UserAnswer;
-use LaravelQuiz\Models\UserQuiz;
+use Illuminate\Support\Collection;
+use Saritasa\LaravelQuiz\Contracts\IQuestion;
+use Saritasa\LaravelQuiz\Contracts\IQuiz;
+use Saritasa\LaravelQuiz\Contracts\IUserQuiz;
+use Saritasa\LaravelQuiz\Models\UserAnswer;
+use Saritasa\LaravelQuiz\Models\UserQuiz;
 
 /**
  * @mixin Model
+ *
+ * @property-read Collection $userAnswers User answers
  */
 trait CanAnswerQuestions
 {
@@ -27,12 +30,22 @@ trait CanAnswerQuestions
     /**
      * {@inheritDoc}
      */
-    public function addAnswer(IQuestion $question, string $value): void
+    public function addAnswers(IQuestion $question, Collection $answers): void
     {
-        $this->userAnswers()->save(new UserAnswer([
-            UserAnswer::VALUE => $value,
-            UserAnswer::QUESTION_ID => $question->getId(),
-        ]));
+        $answers->each(function (string $answer) use ($question) {
+            $this->userAnswers()->save(new UserAnswer([
+                UserAnswer::ANSWER => $answer,
+                UserAnswer::QUESTION_ID => $question->getId(),
+            ]));
+        });
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAnswers(IQuestion $question): Collection
+    {
+        return $this->userAnswers()->where(UserAnswer::QUESTION_ID, '=', $question->getId())->get();
     }
 
     /**

@@ -20,7 +20,7 @@ class CreateAnswerOptionsTable extends Migration
             $table->boolean('is_correct')->nullable()->default(null);
             $table->softDeletes();
 
-            $table->foreign(['question_id'])->on('quiz_questions')->references('id');
+            $table->foreign(['question_id'])->on('questions')->references('id');
         });
     }
 

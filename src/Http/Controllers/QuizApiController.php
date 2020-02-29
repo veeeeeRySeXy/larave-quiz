@@ -1,12 +1,13 @@
 <?php
 
-namespace LaravelQuiz\Http\Controllers;
+namespace Saritasa\LaravelQuiz\Http\Controllers;
 
 use Dingo\Api\Http\Response;
-use LaravelQuiz\Contracts\IQuizWorkflowService;
-use LaravelQuiz\Exceptions\LaravelQuizException;
-use LaravelQuiz\Models\Containers\Quiz;
-use LaravelQuiz\Services\QuizWorkflowService;
+use Saritasa\LaravelQuiz\Contracts\IQuizWorkflowService;
+use Saritasa\LaravelQuiz\Exceptions\LaravelQuizException;
+use Saritasa\LaravelQuiz\Http\Transformers\QuestionTransformer;
+use Saritasa\LaravelQuiz\Models\Quizzes\Quiz;
+use Saritasa\LaravelQuiz\Services\QuizWorkflowService;
 use Saritasa\LaravelControllers\Api\BaseApiController;
 
 class QuizApiController extends BaseApiController
@@ -66,5 +67,24 @@ class QuizApiController extends BaseApiController
         $this->quizWorkflowService->finish($userQuiz);
 
         return $this->response->noContent();
+    }
+
+    /**
+     * Returns quiz questions.
+     *
+     * @param Quiz $quiz Quiz to get questions
+     * @param QuestionTransformer $transformer Questions transformer
+     *
+     * @return Response
+     */
+    public function questions(Quiz $quiz, QuestionTransformer $transformer): Response
+    {
+        $userQuiz = $quiz->getQuizForUser($this->user);
+
+        if (!$userQuiz) {
+            $this->response->errorForbidden();
+        }
+
+        return $this->response->collection($quiz->getQuestions(), $transformer);
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelQuiz\Listeners;
+namespace Saritasa\LaravelQuiz\Listeners;
 
-use LaravelQuiz\Contracts\HasScore;
-use LaravelQuiz\Contracts\IQuizScoreService;
-use LaravelQuiz\Events\QuizFinishedEvent;
+use Saritasa\LaravelQuiz\Contracts\HasScore;
+use Saritasa\LaravelQuiz\Contracts\IQuizScoreService;
+use Saritasa\LaravelQuiz\Events\QuizFinishedEvent;
 
 class CalculateQuizScoreEvent
 {

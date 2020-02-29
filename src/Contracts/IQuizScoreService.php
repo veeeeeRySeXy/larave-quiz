@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelQuiz\Contracts;
+namespace Saritasa\LaravelQuiz\Contracts;
 
 /**
  * Contract for checks or calculates answers on quiz questions.

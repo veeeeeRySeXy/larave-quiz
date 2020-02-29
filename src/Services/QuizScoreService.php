@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelQuiz\Services;
+namespace Saritasa\LaravelQuiz\Services;
 
-use LaravelQuiz\Contracts\HasScore;
-use LaravelQuiz\Contracts\IQuizScoreService;
-use LaravelQuiz\Models\AnswerOption;
+use Saritasa\LaravelQuiz\Contracts\HasScore;
+use Saritasa\LaravelQuiz\Contracts\IQuizScoreService;
+use Saritasa\LaravelQuiz\Models\AnswerOption;
 
 /**
  * Business-logic service for checks or calculates answers on quiz questions.

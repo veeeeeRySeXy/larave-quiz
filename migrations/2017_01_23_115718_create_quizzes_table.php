@@ -16,7 +16,7 @@ class CreateQuizzesTable extends Migration
         Schema::create('quizzes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 250);
-            $table->enum('type', ['simple', 'withScores', 'inQuiz']);
+            $table->enum('type', ['simple', 'withScores']);
 
             $table->softDeletes();
             $table->timestamps();

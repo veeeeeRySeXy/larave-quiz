@@ -1,15 +1,15 @@
 <?php
 
-namespace LaravelQuiz\Services;
+namespace Saritasa\LaravelQuiz\Services;
 
 use Illuminate\Contracts\Events\Dispatcher;
-use LaravelQuiz\Contracts\CanAnswerQuestions;
-use LaravelQuiz\Contracts\IQuiz;
-use LaravelQuiz\Contracts\IQuizWorkflowService;
-use LaravelQuiz\Contracts\IUserQuiz;
-use LaravelQuiz\Events\QuizFinishedEvent;
-use LaravelQuiz\Events\QuizStartedEvent;
-use LaravelQuiz\Exceptions\LaravelQuizException;
+use Saritasa\LaravelQuiz\Contracts\CanAnswerQuestions;
+use Saritasa\LaravelQuiz\Contracts\IQuiz;
+use Saritasa\LaravelQuiz\Contracts\IQuizWorkflowService;
+use Saritasa\LaravelQuiz\Contracts\IUserQuiz;
+use Saritasa\LaravelQuiz\Events\QuizFinishedEvent;
+use Saritasa\LaravelQuiz\Events\QuizStartedEvent;
+use Saritasa\LaravelQuiz\Exceptions\LaravelQuizException;
 
 /**
  * Service to handle quiz process.

@@ -1,8 +1,8 @@
 <?php
 
-namespace LaravelQuiz\Events;
+namespace Saritasa\LaravelQuiz\Events;
 
-use LaravelQuiz\Contracts\IUserQuiz;
+use Saritasa\LaravelQuiz\Contracts\IUserQuiz;
 
 class QuizStartedEvent
 {

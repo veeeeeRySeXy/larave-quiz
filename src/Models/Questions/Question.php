@@ -1,12 +1,13 @@
 <?php
 
-namespace LaravelQuiz\Models\Questions;
+namespace Saritasa\LaravelQuiz\Models\Questions;
 
-use App\Models\Enums\QuestionTypes;
+use Saritasa\LaravelQuiz\Contracts\CanAnswerQuestions;
+use Saritasa\LaravelQuiz\Enums\QuestionTypes;
 use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use LaravelQuiz\Contracts\IQuestion;
+use Saritasa\LaravelQuiz\Contracts\IQuestion;
 use SRLabs\EloquentSTI\SingleTableInheritanceTrait;
 
 /**
@@ -17,7 +18,7 @@ use SRLabs\EloquentSTI\SingleTableInheritanceTrait;
  * @property-read string $type Type of this question (multiple, single, etc)
  * @property string|null $explanation Explanation of correct answer
  */
-abstract class Question extends Eloquent implements IQuestion
+class Question extends Eloquent implements IQuestion
 {
     use HasTimestamps;
     use SingleTableInheritanceTrait;
@@ -27,8 +28,6 @@ abstract class Question extends Eloquent implements IQuestion
     public const QUESTION = 'question';
     public const TYPE = 'type';
     public const EXPLANATION = 'explanation';
-
-    protected $table = 'quiz_questions';
 
     protected $fillable = [
         self::QUESTION,
@@ -60,5 +59,14 @@ abstract class Question extends Eloquent implements IQuestion
     public function getId(): int
     {
         return $this->getKey();
+    }
+
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isCouldBeAnswered(CanAnswerQuestions $user): bool
+    {
+        return $user->getAnswers($this)->isEmpty();
     }
 }

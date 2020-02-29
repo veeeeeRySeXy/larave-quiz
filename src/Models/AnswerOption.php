@@ -1,11 +1,13 @@
 <?php
 
-namespace LaravelQuiz\Models;
+namespace Saritasa\LaravelQuiz\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use LaravelQuiz\Contracts\IAnswerOption;
+use Saritasa\LaravelQuiz\Contracts\IAnswerOption;
+use Saritasa\LaravelQuiz\Contracts\IQuestion;
+use Saritasa\LaravelQuiz\Models\Questions\Question;
 
 /**
  * Class AnswerOption.
@@ -15,7 +17,7 @@ use LaravelQuiz\Contracts\IAnswerOption;
  * @property string $value
  * @property bool $is_correct
  *
- * @property-read Question $question
+ * @property-read IQuestion $question
  */
 class AnswerOption extends Model implements IAnswerOption
 {
@@ -37,6 +39,11 @@ class AnswerOption extends Model implements IAnswerOption
         self::IS_CORRECT,
     ];
 
+    /**
+     * Returns related question.
+     *
+     * @return BelongsTo
+     */
     public function question(): BelongsTo
     {
         return $this->belongsTo(Question::class);

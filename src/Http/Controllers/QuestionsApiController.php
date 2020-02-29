@@ -1,12 +1,12 @@
 <?php
 
-namespace LaravelQuiz\Http\Controllers;
+namespace Saritasa\LaravelQuiz\Http\Controllers;
 
 use Dingo\Api\Http\Response;
-use LaravelQuiz\Contracts\IQuestionsFlowService;
-use LaravelQuiz\Exceptions\LaravelQuizException;
-use LaravelQuiz\Http\Requests\RequestWithAnswers;
-use LaravelQuiz\Models\Questions\Question;
+use Saritasa\LaravelQuiz\Contracts\IQuestionsFlowService;
+use Saritasa\LaravelQuiz\Exceptions\LaravelQuizException;
+use Saritasa\LaravelQuiz\Http\Requests\RequestWithAnswers;
+use Saritasa\LaravelQuiz\Models\Questions\Question;
 use Saritasa\LaravelControllers\Api\BaseApiController;
 
 class QuestionsApiController extends BaseApiController

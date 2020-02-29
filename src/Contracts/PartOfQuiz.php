@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelQuiz\Contracts;
+namespace Saritasa\LaravelQuiz\Contracts;
 
 interface PartOfQuiz extends IQuestion
 {

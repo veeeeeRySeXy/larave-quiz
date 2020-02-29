@@ -1,5 +1,5 @@
 {
-    "name": "veeeeeRySeXy/laravel-quiz",
+    "name": "veeeeerysexy/laravel-quiz",
     "type": "library",
     "description": "Library to make easy integration with questions anf quizzes",
     "authors": [
@@ -34,5 +34,12 @@
         "sort-packages": true
     },
     "prefer-stable": false,
-    "minimum-stability": "beta"
+    "minimum-stability": "beta",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Saritasa\\LaravelQuiz\\LaravelQuizServiceProvider"
+            ]
+        }
+    }
 }

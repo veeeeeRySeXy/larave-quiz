@@ -1,16 +1,18 @@
 <?php
 
-namespace LaravelQuiz\Models\Containers;
+namespace Saritasa\LaravelQuiz\Models\Quizzes;
 
-use App\Models\Enums\QuizTypes;
+use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Saritasa\LaravelQuiz\Enums\QuizTypes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
-use LaravelQuiz\Contracts\CanAnswerQuestions;
-use LaravelQuiz\Contracts\HasAnswerOptions;
-use LaravelQuiz\Contracts\IQuiz;
-use LaravelQuiz\Contracts\IUserQuiz;
-use LaravelQuiz\Models\UserQuiz;
+use Saritasa\LaravelQuiz\Contracts\CanAnswerQuestions;
+use Saritasa\LaravelQuiz\Contracts\IQuiz;
+use Saritasa\LaravelQuiz\Contracts\IUserQuiz;
+use Saritasa\LaravelQuiz\Models\Questions\Question;
+use Saritasa\LaravelQuiz\Models\UserQuiz;
 use SRLabs\EloquentSTI\SingleTableInheritanceTrait;
 
 /**
@@ -19,19 +21,28 @@ use SRLabs\EloquentSTI\SingleTableInheritanceTrait;
  * @property-read Collection $userQuizzes User quizzes in scope of this quiz
  * @property-read Collection $questions Questions in scope of this quiz
  */
-abstract class Quiz extends Model implements IQuiz
+class Quiz extends Model implements IQuiz
 {
+    use HasTimestamps;
     use SingleTableInheritanceTrait;
+    use SoftDeletes;
 
     public const TYPE = 'type';
+    public const NAME = 'name';
 
     protected $morphClass = Quiz::class;
 
     protected $discriminatorColumn = self::TYPE;
 
+    protected $table = 'quizzes';
+
     protected $inheritanceMap = [
         QuizTypes::SIMPLE => SimpleQuiz::class,
         QuizTypes::WITH_SCORES => Quiz::class,
+    ];
+
+    protected $fillable = [
+        self::NAME,
     ];
 
     /**
@@ -61,7 +72,7 @@ abstract class Quiz extends Model implements IQuiz
      */
     public function getQuestions(): Collection
     {
-        return $this->questions->whereInstanceOf(HasAnswerOptions::class);
+        return $this->questions;
     }
 
     /**
@@ -79,6 +90,16 @@ abstract class Quiz extends Model implements IQuiz
      */
     public function userQuizzes(): HasMany
     {
-        return $this->hasMany(UserQuiz::class);
+        return $this->hasMany(UserQuiz::class, UserQuiz::QUIZ_ID);
+    }
+
+    /**
+     * Returns Eloquent relations with questions.
+     *
+     * @return HasMany
+     */
+    public function questions(): HasMany
+    {
+        return $this->hasMany(Question::class, 'quiz_id');
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace LaravelQuiz\Models\Helpers;
+namespace Saritasa\LaravelQuiz\Models\Helpers;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use LaravelQuiz\Contracts\CanAnswerQuestions;
-use LaravelQuiz\Contracts\IQuiz;
-use LaravelQuiz\Models\Containers\Quiz;
+use Saritasa\LaravelQuiz\Contracts\CanAnswerQuestions;
+use Saritasa\LaravelQuiz\Contracts\IQuiz;
+use Saritasa\LaravelQuiz\Models\Quizzes\Quiz;
 
 /**
  * Helper for questions which is exists as part of the quiz.

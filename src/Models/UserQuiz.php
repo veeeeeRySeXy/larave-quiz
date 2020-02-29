@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelQuiz\Models;
+namespace Saritasa\LaravelQuiz\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
-use LaravelQuiz\Contracts\IQuestion;
-use LaravelQuiz\Contracts\IQuiz;
-use LaravelQuiz\Contracts\IUserQuiz;
+use Saritasa\LaravelQuiz\Contracts\IQuestion;
+use Saritasa\LaravelQuiz\Contracts\IQuiz;
+use Saritasa\LaravelQuiz\Contracts\IUserQuiz;
 
 /**
  * Base user quiz information.
@@ -35,9 +35,16 @@ class UserQuiz extends Model implements IUserQuiz
     public const USER_ID = 'user_id';
     public const QUIZ_ID = 'quiz_id';
     public const STARTED_AT = 'started_at';
+    public const COMPLETED_AT = 'completed_at';
 
+    protected $fillable = [
+        self::USER_ID,
+        self::QUIZ_ID,
+        self::STARTED_AT,
+    ];
     protected $dates = [
         self::STARTED_AT,
+        self::COMPLETED_AT,
     ];
 
     /**

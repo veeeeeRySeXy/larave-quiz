@@ -1,13 +1,13 @@
 <?php
 
-namespace LaravelQuiz\Models\Helpers;
+namespace Saritasa\LaravelQuiz\Models\Helpers;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
-use LaravelQuiz\Exceptions\LaravelQuizException;
-use LaravelQuiz\Models\AnswerOption;
-use LaravelQuiz\Models\UserAnswer;
+use Saritasa\LaravelQuiz\Exceptions\LaravelQuizException;
+use Saritasa\LaravelQuiz\Models\AnswerOption;
+use Saritasa\LaravelQuiz\Models\UserAnswer;
 
 /**
  * Helper for questions with has answers.

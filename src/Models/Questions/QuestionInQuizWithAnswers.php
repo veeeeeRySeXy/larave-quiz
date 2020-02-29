@@ -1,12 +1,12 @@
 <?php
 
-namespace LaravelQuiz\Models\Questions;
+namespace Saritasa\LaravelQuiz\Models\Questions;
 
-use App\Models\Enums\QuestionTypes;
-use LaravelQuiz\Contracts\HasAnswerOptions as HasAnswerOptionsContract;
-use LaravelQuiz\Contracts\PartOfQuiz as PartOfQuizContract;
-use LaravelQuiz\Models\Helpers\HasAnswerOptions;
-use LaravelQuiz\Models\Helpers\PartOfQuiz;
+use Saritasa\LaravelQuiz\Enums\QuestionTypes;
+use Saritasa\LaravelQuiz\Contracts\HasAnswerOptions as HasAnswerOptionsContract;
+use Saritasa\LaravelQuiz\Contracts\PartOfQuiz as PartOfQuizContract;
+use Saritasa\LaravelQuiz\Models\Helpers\HasAnswerOptions;
+use Saritasa\LaravelQuiz\Models\Helpers\PartOfQuiz;
 
 class QuestionInQuizWithAnswers extends Question implements HasAnswerOptionsContract, PartOfQuizContract
 {
@@ -16,8 +16,8 @@ class QuestionInQuizWithAnswers extends Question implements HasAnswerOptionsCont
     /**
      * {@inheritDoc}
      */
-    public function newQuery()
+    public function newQuery($excludeDeleted = true)
     {
-        return parent::newQuery()->where(static::TYPE, '=', QuestionTypes::WITH_ANSWERS_IN_QUIZ);
+        return parent::newQuery($excludeDeleted)->where(static::TYPE, '=', QuestionTypes::WITH_ANSWERS_IN_QUIZ);
     }
 }

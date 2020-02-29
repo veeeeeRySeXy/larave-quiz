@@ -1,13 +1,13 @@
 <?php
 
-namespace LaravelQuiz\Models\Containers;
+namespace Saritasa\LaravelQuiz\Models\Quizzes;
 
-use App\Models\Enums\QuizTypes;
+use Saritasa\LaravelQuiz\Enums\QuizTypes;
 
 class SimpleQuiz extends Quiz
 {
-    public function newQuery()
+    public function newQuery($excludeDeleted = true)
     {
-        return parent::newQuery()->where(static::TYPE, '=', QuizTypes::SIMPLE);
+        return parent::newQuery($excludeDeleted)->where(static::TYPE, '=', QuizTypes::SIMPLE);
     }
 }

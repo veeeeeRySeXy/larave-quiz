@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelQuiz\Events;
+namespace Saritasa\LaravelQuiz\Events;
 
-use LaravelQuiz\Contracts\CanAnswerQuestions;
-use LaravelQuiz\Contracts\IQuestion;
+use Saritasa\LaravelQuiz\Contracts\CanAnswerQuestions;
+use Saritasa\LaravelQuiz\Contracts\IQuestion;
 
 class QuestionAnsweredEvent
 {

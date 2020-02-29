@@ -17,9 +17,8 @@ class CreateUserQuizzesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('quiz_id');
             $table->unsignedInteger('user_id');
-            $table->boolean('is_completed');
             $table->timestamp('started_at')->nullable();
-            $table->unsignedInteger('time_spent')->nullable();
+            $table->timestamp('completed_at')->nullable();
             $table->smallInteger('score')->nullable();
             $table->timestamp('valid_until')->nullable();
 

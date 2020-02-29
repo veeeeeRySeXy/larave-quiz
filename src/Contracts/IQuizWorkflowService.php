@@ -1,8 +1,8 @@
 <?php
 
-namespace LaravelQuiz\Contracts;
+namespace Saritasa\LaravelQuiz\Contracts;
 
-use LaravelQuiz\Exceptions\LaravelQuizException;
+use Saritasa\LaravelQuiz\Exceptions\LaravelQuizException;
 
 /**
  * Contract to handle quiz process. Guarantees valid quiz workflow in application.
